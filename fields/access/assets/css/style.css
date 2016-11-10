@@ -1,0 +1,42 @@
+/*! AccessField - Daniel Weidner <hallo@danielweidner.de> */
+
+/* =====  1 Components  ===================================================== */
+
+/* -----  1.1 Bubble Component  --------------------------------------------- */
+
+.acf-bubble {
+  position: relative;
+  padding: 1em 1.5em;
+  border: 2px solid #ddd;
+}
+
+.acf-bubble-up:before,
+.acf-bubble-up:after {
+  content: "";
+  position: absolute;
+  right: 0.75em;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  border: 0.75em solid transparent;
+  border-bottom-color: #ddd;
+}
+
+.acf-bubble-up:after {
+  margin-bottom: -3px;
+  border-bottom-color: #efefef;
+}
+
+/* =====  2 Layout  ========================================================= */
+
+/* -----  1.1 Field Footer  ------------------------------------------------- */
+
+.acf .field-aside {
+  margin-top: 1em;
+}
+.acf .field-help + .field-aside {
+  margin-top: 0;
+}
+  .acf .field-aside .field {
+    margin-bottom: 0;
+  }

@@ -1,0 +1,8 @@
+{
+  "name": "firewall",
+  "description": "Protect your pages and assets from unauthorized access.",
+  "author": "Daniel Weidner hallo@danielweidner.de",
+  "version": "1.0.0-beta",
+  "type": "kirby-plugin",
+  "license": "MIT"
+}
