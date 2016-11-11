@@ -1,6 +1,6 @@
 # Kirby Firewall Plugin
 
-![Version](https://img.shields.io/badge/version-1.0.0--beta1-orange.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-2.4%2B-red.svg)
+![Version](https://img.shields.io/badge/version-1.0.0--beta2-orange.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-2.4%2B-red.svg)
 
 Restrict access to your pages and page contents to specific users and roles only.
 
