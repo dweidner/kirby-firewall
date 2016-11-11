@@ -19,15 +19,18 @@
 $kirby->set('page::method', 'isAccessRestricted', function($page) {
   $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'access'));
 
-  if (!$field->exists() || $field->isEmpty()) {
+  if (!$field->exists() || v::accepted($field->value())) {
     return false;
   }
 
-  $value = $field->yaml();
-  $type = a::get($value, 'type', 'public');
-  $list = a::get($value, $type, []);
+  if (v::denied($field->value())) {
+    return true;
+  }
 
-  return ( $type !== 'public' ) && ( is_array($list) && count($list) > 0 );
+  $value = $field->yaml();
+  $value = array_filter($value);
+
+  return is_array($value) && !empty($value);
 });
 
 /**
@@ -44,7 +47,7 @@ $kirby->set('page::method', 'isAccessible', function($page) {
  * Check whether the page is accessible by a certain user or role.
  *
  * @param \Page $page Page to test.
- * @param \User|\Role|string $obj Name of a user/role or the corresponding instances.
+ * @param \User|\Role $obj Name of a user/role or the corresponding instances.
  * @return bool
  */
 $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
@@ -52,27 +55,31 @@ $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
     return true;
   }
 
-  if (!$obj) {
+  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'access'));
+
+  if (!$obj || v::denied($field->value())) {
     return false;
   }
 
-  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'access'));
-  $value = $field->yaml();
+  $rules = $field->yaml();
+  $data  = null;
 
-  $type = a::get($value, 'type');
-  $list = a::get($value, $type, []);
-
-  $needle = null;
-
-  if (is_string($obj) && in_array($type, ['users', 'roles'])) {
-    $needle = $obj;
-  } else if ($type === 'users' && $obj instanceof \User) {
-    $needle = $obj->username();
-  } else if ($type === 'roles' && $obj instanceof \User) {
-    $needle = $obj->role()->id();
-  } else if ($type === 'roles' && $obj instanceof \Role) {
-    $needle = $obj->id();
+  if ($obj instanceof \User) {
+    $data = ['users' => $obj->username(), 'roles' => $obj->role()->id()];
+  } else if ($obj instanceof \Role) {
+    $data = ['roles' => $obj->id()];
   }
 
-  return $needle && in_array($needle, $list);
+  if (empty($data)) {
+    return false;
+  }
+
+  foreach ($rules as $type => $whitelist) {
+    if (array_key_exists($type, $data) && in_array($data[$type], $whitelist)) {
+      return true;
+    }
+  }
+
+  return false;
+
 });
