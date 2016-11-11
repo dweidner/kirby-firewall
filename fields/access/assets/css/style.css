@@ -31,12 +31,21 @@
 
 /* -----  1.1 Field Footer  ------------------------------------------------- */
 
-.acf .field-aside {
+.acf .field-panel {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0.75em;
   margin-top: 1em;
+  max-height: 25em;
+  transition: max-height 0.2s linear, padding 0.2s linear;
 }
-.acf .field-help + .field-aside {
+.acf .field-panel[aria-hidden="true"] {
+  padding-top: 0 !important;
+  max-height: 0 !important;
+}
+.acf .field-help + .field-panel {
   margin-top: 0;
 }
-  .acf .field-aside .field {
+  .acf .field-panel :last-child {
     margin-bottom: 0;
   }

@@ -1,6 +1,8 @@
 /*! AccessField - Daniel Weidner <hallo@danielweidner.de> */
 
-var AccessField = (function($, $field) {
+var AccessFieldPanel = (function($, $field) {
+
+  "use strict";
 
   /**
    * A reference to the current function scope. Can be used within callback
@@ -11,82 +13,91 @@ var AccessField = (function($, $field) {
   var self = this;
 
   /**
-   * Name of the class name used to identify elements with custom behaviors.
+   * Element that toggles the visibility of the panel.
    *
-   * @type {string}
+   * @type {jQuery}
    */
-  var hook = 'js-acf';
+  self.$toggle = $field.find('.js-toggle-panel');
 
   /**
-   * Collection of HTMLElements manipulated by the script.
+   * Panel element containing additional fields.
    *
-   * @type {Object<string, jQuery>}
+   * @type {jQuery}
    */
-  this.$ = {
-    field: $field,
-    users: $field.find('.' + hook + '-users'),
-    roles: $field.find('.' + hook + '-roles'),
-  };
+  self.$panel = $field.find('#' + self.$toggle.attr('aria-controls'));
 
   /**
    * Initialize the field instance.
    *
    * @returns {self}
    */
-  this.init = function () {
-    self.select(self.type());
-    self.bind();
-    return self;
-  };
+  self.init = function () {
 
-  /**
-   * Registers event handlers.
-   *
-   * @returns {self}
-   */
-  this.bind = function() {
-    self.$.field
-      .find('select')
-      .on('change', function(e) {
-        self.select(this.value);
-      });
+    self.$panel.css('max-height', self.$panel.outerHeight() + 16);
 
-    return self;
-  };
-
-  /**
-   * Get the currently selected control type.
-   *
-   * @returns {string}
-   */
-  this.type = function() {
-    return self.$.field.find('select').val();
-  };
-
-  /**
-   * Select the given control type.
-   *
-   * @param {string} type Access control type selected by the user.
-   * @returns {self}
-   */
-  this.select = function(type) {
-    var className = 'hidden';
-
-    if (type === 'users') {
-      self.$.users.removeClass(className);
-      self.$.roles.addClass(className);
-    } else if (type === 'roles') {
-      self.$.users.addClass(className);
-      self.$.roles.removeClass(className);
+    if (self.isExpanded()) {
+      self.expand();
     } else {
-      self.$.users.addClass(className);
-      self.$.roles.addClass(className);
+      self.collapse();
     }
 
-    return self;
+    return self.bind();
   };
 
-  return this.init();
+  /**
+   * Check whether the panel is currently expanded.
+   *
+   * @return {Boolean}
+   */
+  self.isExpanded = function() {
+    return self.$toggle.attr('aria-expanded') === 'true';
+  };
+
+  /**
+  * Registers event handlers.
+  *
+    * @returns {self}
+  */
+  self.bind = function() {
+
+    self.$toggle.on('change', $.proxy(self.toggle, self));
+
+    return self;
+
+  };
+
+  /**
+   * Expand the panel element.
+   */
+  self.expand = function() {
+
+    self.$toggle.attr('aria-expanded', true);
+    self.$panel.attr('aria-hidden', false);
+
+    return self;
+
+  };
+
+  /**
+   * Collapse the panel element.
+   */
+  self.collapse = function() {
+
+    self.$toggle.attr('aria-expanded', false);
+    self.$panel.attr('aria-hidden', true);
+
+    return self;
+
+  };
+
+  /**
+   * Toggle the visibility of the panel element.
+   */
+  self.toggle = function() {
+    return self.isExpanded() ? self.collapse() : self.expand();
+  };
+
+  return self.init();
 
 });
 
@@ -98,7 +109,16 @@ var AccessField = (function($, $field) {
    * @returns {AccessField}
    */
   $.fn.accessfield = function() {
-    return new AccessField($, this);
+
+    var panel = this.data('access-field-panel');
+
+    if (!panel) {
+      panel = new AccessFieldPanel($, this);
+      this.data('access-field-panel', panel);
+    }
+
+    return panel;
+
   };
 
  })(jQuery);
