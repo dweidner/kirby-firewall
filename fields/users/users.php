@@ -18,7 +18,7 @@ class UsersField extends CheckboxesField {
    *
    * @var string
    */
-  const VERSION = '1.0.0-beta';
+  const VERSION = '1.0.0-beta2';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
@@ -36,14 +36,36 @@ class UsersField extends CheckboxesField {
   public $exclude = [];
 
   /**
+   * Get the id of the current field instance.
+   *
+   * @return string
+   */
+  public function id() {
+
+    $prefix = '';
+
+    if (is_a($this->parentField, 'BaseField')) {
+      $prefix .= $this->parentField->id() . '-';
+    }
+
+    return $prefix . parent::id();
+
+  }
+
+  /**
    * Get the name of the current field instance.
    *
    * @return string
    */
   public function name() {
 
-    $prefix = is_a($this->parentField, 'BaseField') ? $this->parentField->name() . '-' : '';
-    return $prefix . $this->name;
+    $prefix = '';
+
+    if (is_a($this->parentField, 'BaseField')) {
+      $prefix .= $this->parentField->name() . '-';
+    }
+
+    return $prefix . parent::name();
 
   }
 

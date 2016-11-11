@@ -3,6 +3,7 @@
 $domain = 'fields.' . AccessField::FIELDNAME . '.';
 
 l::set([
+  $domain . 'label' => 'Öffentlich',
   $domain . 'users' => 'Benutzer',
   $domain . 'roles' => 'Rollen',
 
