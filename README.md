@@ -1,14 +1,15 @@
 # Kirby Firewall Plugin
 
-![Version](https://img.shields.io/badge/version-1.0.0--beta1-orange.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-2.4%2B-red.svg)
+![Version](https://img.shields.io/badge/version-1.0.0--beta2-orange.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-2.4%2B-red.svg)
 
-Restrict access to your pages and page contents to specific users and roles only.
+Protect your pages and files from unauthorized access. Simply select the users and roles that should be able to view your content via a custom field.
 
 ![Access Control Field](http://dweidner.github.io/kirby-firewall/images/access-control-field.gif)
 
 ## Requirements
 
 - [**Kirby**](https://getkirby.com/) 2.4+
+- PHP 5.4.0+
 
 ## Installation
 
@@ -54,7 +55,6 @@ fields:
   access:
     label: Access Control
     type: access
-    help: Control who should be able to view the current page with all its assets.
 ```
 
 You can exclude both users as well as roles from the corresponding input list:
@@ -105,9 +105,26 @@ Title: User Submissions
 ----
 
 Access:
-  type: roles
   roles:
     - editor
+
+----
+
+Text: An overview of user submissions within the last 24 hours.
+```
+
+You can also combine role ids with usernames:
+
+```
+Title: User Submissions
+
+----
+
+Access:
+  roles:
+    - editor
+  users:
+    - dweidner
 
 ----
 
