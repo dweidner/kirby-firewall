@@ -21,20 +21,10 @@ $kirby->set('file::method', 'isAccessRestricted', function($file) {
 });
 
 /**
- * Check whether the given file is accessible by the currently logged-in user.
- *
- * @param \File $file File to test.
- * @return bool
- */
-$kirby->set('file::method', 'isAccessible', function($file) {
-  return $file->page()->isAccessibleBy(site()->user());
-});
-
-/**
  * Check whether the file is accessible by a certain user or role.
  *
  * @param \File $file File to test.
- * @param \User|\Role $obj Name of a user/role or the corresponding instances.
+ * @param \User|\Role $obj User or role object.
  * @return bool
  */
 $kirby->set('file::method', 'isAccessibleBy', function($file, $obj) {
