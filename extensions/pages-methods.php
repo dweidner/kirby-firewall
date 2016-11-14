@@ -10,24 +10,11 @@
  */
 
 /**
- * Return all pages from the collection which are accessible by the currently
- * logged-in user.
- *
- * @param \Pages $pages Collection of pages.
- * @return \Pages
- */
-$kirby->set('pages::method', 'accessible', function($pages) {
-  return $pages->filter(function($page) {
-    return $page->isAccessible();
-  });
-});
-
-/**
  * Return all pages from the collection that are accessible by the given
  * user/role.
  *
  * @param \Pages $pages Collection of pages.
- * @param \User|\Role|string $obj
+ * @param \User|\Role $obj User or role object.
  * @return \Pages
  */
 $kirby->set('pages::method', 'accessibleBy', function($pages, $obj) {
@@ -37,24 +24,11 @@ $kirby->set('pages::method', 'accessibleBy', function($pages, $obj) {
 });
 
 /**
- * Return all pages from the collection that the currently logged-in user
- * is not allowed to access.
- *
- * @param \Pages $pages Collection of pages.
- * @return \Pages
- */
-$kirby->set('pages::method', 'inaccessible', function($pages) {
-  return $pages->filter(function($page) {
-    return !$page->isAccessible();
-  });
-});
-
-/**
  * Return all pages from the collection that the given user/role
  * is not allowed to access.
  *
  * @param \Pages $pages Collection of pages.
- * @param \User|\Role|string $obj
+ * @param \User|\Role $obj User or role object.
  * @return \Pages
  */
 $kirby->set('pages::method', 'inaccessibleBy', function($pages, $obj) {

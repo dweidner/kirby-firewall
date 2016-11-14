@@ -10,24 +10,10 @@
  */
 
 /**
- * Return all files from the collection which are accessible by the currently
- * logged-in user.
+ * Return all files from the collection that are accessible by the given user.
  *
  * @param \Files $files Collection of files.
- * @return \Files
- */
-$kirby->set('files::method', 'accessible', function($files) {
-  return $files->filter(function($file) {
-    return $file->isAccessible();
-  });
-});
-
-/**
- * Return all files from the collection that are accessible by the given
- * user/role.
- *
- * @param \Files $files Collection of files.
- * @param \User|\Role $obj
+ * @param \User|\Role $obj User or role object.
  * @return \Files
  */
 $kirby->set('files::method', 'accessibleBy', function($files, $obj) {
@@ -37,24 +23,11 @@ $kirby->set('files::method', 'accessibleBy', function($files, $obj) {
 });
 
 /**
- * Return all files from the collection that the currently logged-in user
- * is not allowed to access.
+ * Return all files from the collection that the given user is not allowed
+ * to access.
  *
  * @param \Files $files Collection of files.
- * @return \Files
- */
-$kirby->set('files::method', 'inaccessible', function($files) {
-  return $files->filter(function($file) {
-    return !$file->isAccessible();
-  });
-});
-
-/**
- * Return all files from the collection that the given user/role
- * is not allowed to access.
- *
- * @param \Files $files Collection of files.
- * @param \User|\Role $obj
+ * @param \User|\Role $obj User or role object.
  * @return \Files
  */
 $kirby->set('files::method', 'inaccessibleBy', function($files, $obj) {

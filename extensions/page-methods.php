@@ -34,20 +34,10 @@ $kirby->set('page::method', 'isAccessRestricted', function($page) {
 });
 
 /**
- * Check whether the given page is accessible by the currently logged-in user.
- *
- * @param \Page $page Page to test.
- * @return bool
- */
-$kirby->set('page::method', 'isAccessible', function($page) {
-  return $page->isAccessibleBy(site()->user());
-});
-
-/**
  * Check whether the page is accessible by a certain user or role.
  *
  * @param \Page $page Page to test.
- * @param \User|\Role $obj Name of a user/role or the corresponding instances.
+ * @param \User|\Role $obj User or role object.
  * @return bool
  */
 $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
@@ -62,24 +52,13 @@ $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
   }
 
   $rules = $field->yaml();
-  $data  = null;
+  $users = a::get($rules, 'users');
+  $roles = a::get($rules, 'roles');
 
-  if ($obj instanceof \User) {
-    $data = ['users' => $obj->username(), 'roles' => $obj->role()->id()];
-  } else if ($obj instanceof \Role) {
-    $data = ['roles' => $obj->id()];
+  if ($obj instanceof \Role) {
+    return !empty($roles) && in_array($obj->id(), $roles);
   }
 
-  if (empty($data)) {
-    return false;
-  }
-
-  foreach ($rules as $type => $whitelist) {
-    if (array_key_exists($type, $data) && in_array($data[$type], $whitelist)) {
-      return true;
-    }
-  }
-
-  return false;
+  return ( !empty($users) && in_array($obj->username(), $users) ) || ( !empty($roles) && in_array($obj->role()->id(), $roles) );
 
 });
