@@ -24,10 +24,11 @@ $kirby->set('route', [
     $filename = array_pop($directories);
 
     $page = site();
+    $user = site()->user();
 
     foreach ($directories as $dirname) {
       if ($child = $page->children()->findBy('dirname', $dirname)) {
-        if ($child->isAccessible()) {
+        if ($child->isAccessibleBy($user)) {
           $page = $child;
         } else {
           header::forbidden();
@@ -60,12 +61,13 @@ $kirby->set('route', [
   'pattern' => '(.*)',
   'action'  => function($uid) {
     $page = ($uid === '/') ? site()->homePage() : page($uid);
+    $user = site()->user();
 
     if (!$page) {
       return site()->visit(site()->errorPage());
     }
 
-    if (!$page->isAccessible()) {
+    if (!$page->isAccessibleBy($user)) {
       header::forbidden();
       die('Access denied');
     }
