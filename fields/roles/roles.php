@@ -18,7 +18,7 @@ class RolesField extends CheckboxesField {
    *
    * @var string
    */
-  const VERSION = '1.0.0-beta2';
+  const VERSION = '1.0.0-beta3';
 
   /**
    * Name of the custom field. Represents the identifier users have to use

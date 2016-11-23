@@ -68,8 +68,12 @@ $kirby->set('route', [
     }
 
     if (!$page->isAccessibleBy($user)) {
-      header::forbidden();
-      die('Access denied');
+      if ($redirect = c::get('firewall.redirect')) {
+        go($redirect);
+      } else {
+        header::forbidden();
+        die('Access denied');
+      }
     }
 
     return site()->visit($page);
