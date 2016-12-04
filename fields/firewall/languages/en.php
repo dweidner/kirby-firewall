@@ -1,6 +1,6 @@
 <?php
 
-$domain = 'fields.' . AccessField::FIELDNAME . '.';
+$domain = 'fields.' . FirewallField::FIELDNAME . '.';
 
 l::set([
   $domain . 'users' => 'Users',

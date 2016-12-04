@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Access Control Field
+ * Firewall Field
  *
- * Custom field that allows to restrict the access to a page to
- * specific users or roles only.
+ * Custom field  to protect your pages and files from unauthorized access.
  *
  * @author     Daniel Weidner <hallo@danielweidner.de>
  * @package    Kirby\Plugin\Firewall
- * @subpackage AccessField
+ * @subpackage FirewallField
  * @since      1.0.0
  */
-class AccessField extends BaseField {
+class FirewallField extends BaseField {
 
   /**
    * Version of the field.
@@ -26,7 +25,7 @@ class AccessField extends BaseField {
    *
    * @var string
    */
-  const FIELDNAME = 'access';
+  const FIELDNAME = 'firewall';
 
   /**
    * Assets to load by the Kirby Panel.
@@ -93,7 +92,7 @@ class AccessField extends BaseField {
   }
 
   /**
-   * Create a new instance of the AccessField class.
+   * Create a new instance of the FirewallField class.
    */
   public function __construct() {
 

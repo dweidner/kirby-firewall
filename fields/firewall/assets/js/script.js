@@ -1,6 +1,6 @@
-/*! AccessField - Daniel Weidner <hallo@danielweidner.de> */
+/*! FirewallField - Daniel Weidner <hallo@danielweidner.de> */
 
-var AccessFieldPanel = (function($, $field) {
+var FirewallField = (function($, $field) {
 
   "use strict";
 
@@ -104,17 +104,17 @@ var AccessFieldPanel = (function($, $field) {
 (function($) {
 
   /**
-   * Create a new instance of the AccessField.
+   * Create a new instance of the FirewallField.
    *
-   * @returns {AccessField}
+   * @returns {FirewallField}
    */
-  $.fn.accessfield = function() {
+  $.fn.firewallField = function() {
 
-    var panel = this.data('access-field-panel');
+    var panel = this.data('firewall-field');
 
     if (!panel) {
-      panel = new AccessFieldPanel($, this);
-      this.data('access-field-panel', panel);
+      panel = new FirewallField($, this);
+      this.data('firewall-field', panel);
     }
 
     return panel;

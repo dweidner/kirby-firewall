@@ -4,7 +4,7 @@
 
 Protect your pages and files from unauthorized access. Simply select the users and roles that should be able to view your content via a custom field.
 
-![Access Control Field](http://dweidner.github.io/kirby-firewall/images/access-control-field.gif)
+![Firewall Field](http://dweidner.github.io/kirby-firewall/images/firewall-field.gif)
 
 ## Requirements
 
@@ -46,24 +46,24 @@ $ git submodule add https://github.com/dweidner/kirby-firewall site/plugins/fire
 
 ## Setup
 
-### 1. Access Control Field (optional)
+### 1. Firewall Field (optional)
 
 To use the access control field within your blueprint use the following:
 
 ```
 fields:
-  access:
+  firewall:
     label: Access Control
-    type: access
+    type: firewall
 ```
 
 You can exclude both users as well as roles from the corresponding input list:
 
 ```
 fields:
-  access:
+  firewall:
     label: Access Control
-    type: access
+    type: firewall
     exclude:
       role:
         - guest
@@ -73,9 +73,9 @@ Have a lot of users? You might want to increase the number of columns:
 
 ```
 fields:
-  access:
+  firewall:
     label: Access Control
-    type: access
+    type: firewall
     columns: 3
 ```
 
@@ -93,7 +93,7 @@ to
 RewriteRule ^content/(.*)$ index.php [L]
 ```
 
-It allows our custom route to handle the access control for all your files within the content folder.
+It allows our custom route to control the access to all your files within the content folder.
 
 ## Usage
 
@@ -104,7 +104,7 @@ Title: User Submissions
 
 ----
 
-Access:
+Firewall:
   roles:
     - editor
 
@@ -120,7 +120,7 @@ Title: User Submissions
 
 ----
 
-Access:
+Firewall:
   roles:
     - editor
   users:
@@ -138,14 +138,14 @@ If you don't like to edit your content files by hand you can install the [Kirby 
 The following options can be set in your `/site/config/config.php` file:
 
 ```php
-c::set('plugin.firewall.fieldname', 'access');
+c::set('plugin.firewall.fieldname', 'firewall');
 c::set('field.users.template', '{username} ({role})');
 c::set('field.roles.template', '{id} ({name})');
 ```
 
 ### plugin.firewall.fieldname
 
-Name of the field that is controlling the access to your pages or asset files (default: `access`).
+Name of the field that is controlling the access to your pages or asset files (default: `firewall`).
 
 ### field.users.template
 
