@@ -17,7 +17,7 @@ class FirewallField extends BaseField {
    *
    * @var string
    */
-  const VERSION = '1.0.0-beta3';
+  const VERSION = '1.0.0';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
