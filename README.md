@@ -100,23 +100,19 @@ It allows our custom route to control the access to all your files within the co
 Once you have completed the setup you can limit access to a page and its contents via a custom field. In order to only allow users of the role `Editor` to access the page `http://example.com/submissions` you need to edit the corresponding content file `content/05-submissions/submissions.md` as follows:
 
 ```
-Title: User Submissions
+Title: Downloads
 
 ----
 
 Firewall:
   roles:
     - editor
-
-----
-
-Text: An overview of user submissions within the last 24 hours.
 ```
 
 You can also combine role ids with usernames:
 
 ```
-Title: User Submissions
+Title: Downloads
 
 ----
 
@@ -125,13 +121,9 @@ Firewall:
     - editor
   users:
     - dweidner
-
-----
-
-Text: An overview of user submissions within the last 24 hours.
 ```
 
-If you don't like to edit your content files by hand you can install the [Kirby Panel](https://github.com/getkirby/panel). Once the Panel is running on your server our custom field will help you out with that process. Hava a look into the section [Asset Control Field](#1-asset-control-field-optional) for further setup instructions.
+If you don't like to edit your content files by hand you can install the [Kirby Panel](https://github.com/getkirby/panel). Once the Panel is running on your server our custom field will help you out with that process. Hava a look into the section [Firewall Field](#1-firewall-field-optional) for further setup instructions.
 
 ## Options
 
@@ -139,6 +131,10 @@ The following options can be set in your `/site/config/config.php` file:
 
 ```php
 c::set('plugin.firewall.fieldname', 'firewall');
+c::set('plugin.firewall.redirect', false);
+c::set('plugin.firewall.pages', '(.*)');
+c::set('plugin.firewall.content', 'content/(.*)');
+
 c::set('field.users.template', '{username} ({role})');
 c::set('field.roles.template', '{id} ({name})');
 ```
@@ -146,6 +142,18 @@ c::set('field.roles.template', '{id} ({name})');
 ### plugin.firewall.fieldname
 
 Name of the field that is controlling the access to your pages or asset files (default: `firewall`).
+
+### plugin.firewall.redirect
+
+Set a custom redirect uri for users with insufficient user privileges. By default a simple "Access denied" page with corresponding "403 Forbidden" response header is returned. If you prefer to redirect the user to a specific page (e.g. `http://yourdomain.com/auth/login`) simply set this option to the desired uri (e.g. `auth/login`).
+
+### plugin.firewall.pages
+
+Allows you to customize the uri pattern of the route which is protecting access to your pages. By default all of your pages which use the Firewall field are protected. You can change the uri pattern if you want to protect a specific subdirectory of your site only (e.g. `/staff/(.*)`). Addionally you can disable the route entirely by setting the option to `false`.
+
+### plugin.firewall.content
+
+Allows you to customize the uri pattern of the route which is protecting access to your content files. By default all of your files are protected which belong to a page using the Firewall field. You can change the uri pattern if you want to protect access to specific files of your site only (e.g. `content/downloads/(.*)`). Addionally you can disable protection of content files  entirely by setting the option to `false`.
 
 ### field.users.template
 

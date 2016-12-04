@@ -9,6 +9,10 @@
  * @since   1.0.0
  */
 
+
+
+if (c::get('plugin.firewall.content')):
+
 /**
  * File Access Control
  *
@@ -18,7 +22,7 @@
  * @see https://getkirby.com/docs/cookbook/asset-firewall How to build an asset firewall
  */
 $kirby->set('route', [
-  'pattern' => 'content/(.*)',
+  'pattern' => c::get('plugin.firewall.content', 'content/(.*)'),
   'action'  => function($path) {
     $directories = str::split($path, '/');
     $filename = array_pop($directories);
@@ -49,6 +53,12 @@ $kirby->set('route', [
   },
 ]);
 
+endif;
+
+
+
+if (c::get('plugin.firewall.pages')):
+
 /**
  * Page Access Control
  *
@@ -58,7 +68,7 @@ $kirby->set('route', [
  * @see https://getkirby.com/docs/developer-guide/advanced/routing Advanced tasks: Routing
  */
 $kirby->set('route', [
-  'pattern' => '(.*)',
+  'pattern' => c::get('plugin.firewall.pages', '(.*)'),
   'action'  => function($uid) {
     $page = ($uid === '/') ? site()->homePage() : page($uid);
     $user = site()->user();
@@ -68,7 +78,7 @@ $kirby->set('route', [
     }
 
     if (!$page->isAccessibleBy($user)) {
-      if ($redirect = c::get('firewall.redirect')) {
+      if ($redirect = c::get('plugin.firewall.redirect')) {
         go($redirect);
       } else {
         header::forbidden();
@@ -79,3 +89,5 @@ $kirby->set('route', [
     return site()->visit($page);
   }
 ]);
+
+endif;
