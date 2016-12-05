@@ -11,7 +11,7 @@
 
 
 
-if (c::get('plugin.firewall.content')):
+if ($pattern = c::get('plugin.firewall.content', 'content/(.*)')):
 
 /**
  * File Access Control
@@ -22,7 +22,7 @@ if (c::get('plugin.firewall.content')):
  * @see https://getkirby.com/docs/cookbook/asset-firewall How to build an asset firewall
  */
 $kirby->set('route', [
-  'pattern' => c::get('plugin.firewall.content', 'content/(.*)'),
+  'pattern' => $pattern,
   'action'  => function($path) {
     $directories = str::split($path, '/');
     $filename = array_pop($directories);
@@ -57,7 +57,7 @@ endif;
 
 
 
-if (c::get('plugin.firewall.pages')):
+if ($pattern = c::get('plugin.firewall.pages', '(.*)')):
 
 /**
  * Page Access Control
@@ -68,7 +68,7 @@ if (c::get('plugin.firewall.pages')):
  * @see https://getkirby.com/docs/developer-guide/advanced/routing Advanced tasks: Routing
  */
 $kirby->set('route', [
-  'pattern' => c::get('plugin.firewall.pages', '(.*)'),
+  'pattern' => $pattern,
   'action'  => function($uid) {
     $page = ($uid === '/') ? site()->homePage() : page($uid);
     $user = site()->user();
