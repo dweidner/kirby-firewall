@@ -1,17 +1,17 @@
-/*! AccessField - Daniel Weidner <hallo@danielweidner.de> */
+/*! FirewallField - Daniel Weidner <hallo@danielweidner.de> */
 
 /* =====  1 Components  ===================================================== */
 
 /* -----  1.1 Bubble Component  --------------------------------------------- */
 
-.acf-bubble {
+.ff-bubble {
   position: relative;
   padding: 1em 1.5em;
   border: 2px solid #ddd;
 }
 
-.acf-bubble-up:before,
-.acf-bubble-up:after {
+.ff-bubble-up:before,
+.ff-bubble-up:after {
   content: "";
   position: absolute;
   right: 0.75em;
@@ -22,7 +22,7 @@
   border-bottom-color: #ddd;
 }
 
-.acf-bubble-up:after {
+.ff-bubble-up:after {
   margin-bottom: -3px;
   border-bottom-color: #efefef;
 }
@@ -31,7 +31,7 @@
 
 /* -----  1.1 Field Footer  ------------------------------------------------- */
 
-.acf .field-panel {
+.ff .field-panel {
   position: relative;
   overflow: hidden;
   padding-top: 0.75em;
@@ -39,13 +39,13 @@
   max-height: 25em;
   transition: max-height 0.2s linear, padding 0.2s linear;
 }
-.acf .field-panel[aria-hidden="true"] {
+.ff .field-panel[aria-hidden="true"] {
   padding-top: 0 !important;
   max-height: 0 !important;
 }
-.acf .field-help + .field-panel {
+.ff .field-help + .field-panel {
   margin-top: 0;
 }
-  .acf .field-panel :last-child {
+  .ff .field-panel :last-child {
     margin-bottom: 0;
   }

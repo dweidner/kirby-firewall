@@ -17,7 +17,7 @@
  * @return bool
  */
 $kirby->set('page::method', 'isAccessRestricted', function($page) {
-  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'access'));
+  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'firewall'));
 
   if (!$field->exists() || v::accepted($field->value())) {
     return false;
@@ -45,7 +45,7 @@ $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
     return true;
   }
 
-  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'access'));
+  $field = $page->content()->get(c::get('plugin.firewall.fieldname', 'firewall'));
 
   if (!$obj || v::denied($field->value())) {
     return false;
