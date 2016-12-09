@@ -5,10 +5,10 @@
  *
  * Custom field  to protect your pages and files from unauthorized access.
  *
- * @author     Daniel Weidner <hallo@danielweidner.de>
- * @package    Kirby\Plugin\Firewall
- * @subpackage FirewallField
- * @since      1.0.0
+ * @author Daniel Weidner <hallo@danielweidner.de>
+ * @package Kirby CMS
+ * @subpackage Firewall
+ * @since 1.0.0
  */
 class FirewallField extends BaseField {
 

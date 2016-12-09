@@ -6,10 +6,10 @@
  * Custom field that displays all registered users of a site as a list
  * of checkboxes.
  *
- * @author     Daniel Weidner <hallo@danielweidner.de>
- * @package    Kirby\Plugin\Firewall
- * @subpackage UsersField
- * @since      1.0.0
+ * @author Daniel Weidner <hallo@danielweidner.de>
+ * @package Kirby CMS
+ * @subpackage Firewall
+ * @since 1.0.0
  */
 class UsersField extends CheckboxesField {
 
