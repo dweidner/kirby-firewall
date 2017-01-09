@@ -41,6 +41,8 @@ var FirewallField = (function($, $field) {
       self.collapse();
     }
 
+    console.log(self);
+
     return self.bind();
   };
 
@@ -108,16 +110,16 @@ var FirewallField = (function($, $field) {
    *
    * @returns {FirewallField}
    */
-  $.fn.firewallField = function() {
+  $.fn.firewall = function() {
 
-    var panel = this.data('firewall-field');
+    var field = this.data('firewall-field');
 
-    if (!panel) {
-      panel = new FirewallField($, this);
-      this.data('firewall-field', panel);
+    if (!field) {
+      field = new FirewallField($, this);
+      this.data('firewall-field', field);
     }
 
-    return panel;
+    return field;
 
   };
 
