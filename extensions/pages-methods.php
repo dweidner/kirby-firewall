@@ -4,9 +4,9 @@
  * @file
  * Extending Kirby’s page collection
  *
- * @author  Daniel Weidner <hallo@danielweidner>
+ * @author  Daniel Weidner <hallo@danielweidner.de>
  * @package Kirby\Plugin\Firewall
- * @since   1.0.0
+ * @since   1.0.1
  */
 
 /**
