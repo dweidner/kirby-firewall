@@ -326,8 +326,8 @@ class FirewallField extends BaseField {
   public function element() {
 
     return parent::element()
-      ->data('field', self::FIELDNAME . 'field')
-      ->addClass('acf');
+      ->data('field', self::FIELDNAME)
+      ->addClass('ff');
 
   }
 
@@ -414,9 +414,9 @@ class FirewallField extends BaseField {
       $child = $field->template();
       $child
         ->removeClass('field-grid-item')
-        ->addClass('acf-bubble')
-        ->addClass('acf-bubble-up')
-        ->addClass('js-acf-' . str::slug($type));
+        ->addClass('ff-bubble')
+        ->addClass('ff-bubble-up')
+        ->addClass('js-ff-' . str::slug($type));
       $container->append($child);
     }
 
