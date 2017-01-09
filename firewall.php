@@ -4,10 +4,9 @@
  * @file
  * Plugin core
  *
- * @author Daniel Weidner <hallo@danielweidner.de>
- * @package Kirby CMS
- * @subpackage Firewall
- * @since 1.0.0
+ * @author  Daniel Weidner <hallo@danielweidner.de>
+ * @package Kirby\Plugin\Firewall
+ * @since   1.0.1
  */
 
 /**  Extending Kirby’s core objects. */

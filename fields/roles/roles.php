@@ -6,10 +6,10 @@
  * Custom field that displays all user roles of a site as a list
  * of checkboxes.
  *
- * @author Daniel Weidner <hallo@danielweidner.de>
- * @package Kirby CMS
- * @subpackage Firewall
- * @since 1.0.0
+ * @author     Daniel Weidner <hallo@danielweidner.de>
+ * @package    Kirby\Plugin\Firewall
+ * @subpackage RolesField
+ * @since      1.0.1
  */
 class RolesField extends CheckboxesField {
 
@@ -18,7 +18,7 @@ class RolesField extends CheckboxesField {
    *
    * @var string
    */
-  const VERSION = '1.0.0';
+  const VERSION = '1.0.1';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
