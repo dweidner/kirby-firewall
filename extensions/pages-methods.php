@@ -36,3 +36,23 @@ $kirby->set('pages::method', 'inaccessibleBy', function($pages, $obj) {
     return !$page->isAccessibleBy($obj);
   });
 });
+
+/**
+ * Return all pages from the collection that are accessible by the current user.
+ *
+ * @param \Pages $pages Collection of pages.
+ * @param \User|\Role $obj User or role object.
+ * @return \Pages
+ */
+$kirby->set('pages::method', 'accessibleByCurrentUser', function($pages) {
+  if(site()->user()) {
+      // user logged in --> role
+      $role = site()->user()->role();
+  }
+  else {
+      // user not logged in --> create fake "guest" role
+      $role = new Role(['id' => 'firewall__guest', 'name' => 'Firewall Guest', 'panel' => false]);
+  }
+  
+  return $pages->accessibleBy($role);
+});
