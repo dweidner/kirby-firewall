@@ -79,6 +79,22 @@ fields:
     columns: 3
 ```
 
+Want default values other than public (roles or users):
+
+```
+fields:
+  firewall:
+    label: Access Control
+    type: firewall
+    default:
+      roles:
+        - editor
+        - admin
+      users:
+        - root
+ 
+```
+
 ### 2. Asset Firewall (optional)
 
 In order for the asset firewall to work, you have to customize your `.htaccess` file in the project root. Change the following line:
