@@ -4,7 +4,7 @@
  * @file
  * Extending Kirby’s page object
  *
- * @author  Daniel Weidner <hallo@danielweidner>
+ * @author  Daniel Weidner <hallo@danielweidner.de>
  * @package Kirby\Plugin\Firewall
  */
 

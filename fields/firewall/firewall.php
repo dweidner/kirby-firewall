@@ -8,7 +8,7 @@
  * @author     Daniel Weidner <hallo@danielweidner.de>
  * @package    Kirby\Plugin\Firewall
  * @subpackage FirewallField
- * @since      1.0.0
+ * @since      1.0.1
  */
 class FirewallField extends BaseField {
 
@@ -17,7 +17,7 @@ class FirewallField extends BaseField {
    *
    * @var string
    */
-  const VERSION = '1.0.0';
+  const VERSION = '1.0.1';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
@@ -326,8 +326,8 @@ class FirewallField extends BaseField {
   public function element() {
 
     return parent::element()
-      ->data('field', self::FIELDNAME . 'field')
-      ->addClass('acf');
+      ->data('field', self::FIELDNAME)
+      ->addClass('ff');
 
   }
 
@@ -414,9 +414,9 @@ class FirewallField extends BaseField {
       $child = $field->template();
       $child
         ->removeClass('field-grid-item')
-        ->addClass('acf-bubble')
-        ->addClass('acf-bubble-up')
-        ->addClass('js-acf-' . str::slug($type));
+        ->addClass('ff-bubble')
+        ->addClass('ff-bubble-up')
+        ->addClass('js-ff-' . str::slug($type));
       $container->append($child);
     }
 
