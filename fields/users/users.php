@@ -18,7 +18,7 @@ class UsersField extends CheckboxesField {
    *
    * @var string
    */
-  const VERSION = '1.1.0';
+  const VERSION = '1.1.1';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
