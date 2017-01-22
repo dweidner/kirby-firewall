@@ -9,7 +9,7 @@
  * @author     Daniel Weidner <hallo@danielweidner.de>
  * @package    Kirby\Plugin\Firewall
  * @subpackage RolesField
- * @since      1.0.1
+ * @since      1.0.0
  */
 class RolesField extends CheckboxesField {
 
@@ -18,7 +18,7 @@ class RolesField extends CheckboxesField {
    *
    * @var string
    */
-  const VERSION = '1.0.1';
+  const VERSION = '1.1.0';
 
   /**
    * Name of the custom field. Represents the identifier users have to use
