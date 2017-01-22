@@ -6,12 +6,13 @@
  *
  * @author  Daniel Weidner <hallo@danielweidner>
  * @package Kirby\Plugin\Firewall
- * @since   1.0.0
  */
 
 /**
  * Check whether the given page has restricted access to specific users or
  * roles only.
+ *
+ * @since   1.0.0
  *
  * @param \Page $page Page to test.
  * @return bool
@@ -35,6 +36,8 @@ $kirby->set('page::method', 'isAccessRestricted', function($page) {
 
 /**
  * Check whether the page is accessible by a certain user or role.
+ *
+ * @since   1.0.0
  *
  * @param \Page $page Page to test.
  * @param \User|\Role $obj User or role object.
@@ -60,5 +63,16 @@ $kirby->set('page::method', 'isAccessibleBy', function($page, $obj) {
   }
 
   return ( !empty($users) && in_array($obj->username(), $users) ) || ( !empty($roles) && in_array($obj->role()->id(), $roles) );
+});
 
+/**
+ * Check whether the page is accessible by the currently logged-in user.
+ *
+ * @since   1.1.0
+ *
+ * @param \Page $page Page to test.
+ * @return bool
+ */
+$kirby->set('page::method', 'isAccessibleByCurrentUser', function($page) {
+  return $page->isAccessibleBy($page->site()->user());
 });
