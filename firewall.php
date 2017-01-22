@@ -6,7 +6,7 @@
  *
  * @author  Daniel Weidner <hallo@danielweidner.de>
  * @package Kirby\Plugin\Firewall
- * @since   1.0.1
+ * @since   1.0.0
  */
 
 /**  Extending Kirby’s core objects. */
